@@ -10,7 +10,7 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/aaa.css">
+    <link rel="stylesheet" href="../css/sponsor.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script language="javascript" type="text/javascript"></script>
 
@@ -42,8 +42,8 @@
   </nav>
   <!-- nav - end-->
   <section>
-    <div class="container py-4">
-        <div class="row align-items-center justify-content-between">
+    <div class="container" style="width: 600px;">
+        <div class="row align-items-center" >
             <a class="navbar-brand h1 text-center" href="index.html">
               <img class="mb-4" src="/img/logo1.png" alt="" width="300" height="150" style="margin-top: 10px;">        
             </a>
@@ -53,23 +53,6 @@
                <label class="form-label mt-1">후원자명 *  </label>
                 <input type="text" class="form-control" id="sign_id">
             </div>
-            <!-- <div class="form-group">
-              <label class="form-label mt-1">닉네임</label>
-               <input type="text" class="form-control" id="sign_nick">
-           </div>
-        <div class="form-group has-success">
-          <label class="form-label mt-2">비밀번호</label>
-          <input type="password" class="form-control" id="sign_pwd">
-        </div>
-
-    <div class="form-group has-danger">
-      <label class="form-label mt-2" for="inputInvalid">비밀번호 재확인</label> 
-      <input type="password" class="form-control" id="sign_pwd2">
-    </div>
-            <div class="form-group">
-               <label class="form-label mt-2">이름</label>
-                <input type="text" class="form-control" id="sign_name">
-            </div> -->
             <div class ="bir_wrap">
               <label class="form-label mt-2">생년월일</label>
               <div class="bir_yy">
@@ -127,131 +110,179 @@
   
             <div class="my-3 ">
               <div class="form-check-inline">결제방법 * 
-                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" id='show' onclick="dis()" checked required>
-                <label class="form-check-label" for="credit">신용카드</label>
+                <input type="radio" name="payment" value="신용카드" checked>신용카드
               </div>
               <div class="form-check-inline">
-                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                <label class="form-check-label" for="debit">계좌이체</label>
+                <input type="radio" name="payment" value="무통장입금">무통장입금
               </div>
               <div class="form-check-inline">
-                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                <label class="form-check-label" for="paypal">무통장입금</label>
+                <input type="radio" name="payment" value="계좌이체">계좌이체
               </div>
             </div>
         
+<!-- 신용카드 -->
+            <div class="row gy-3 " id="selectPay_card">
+              <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  카드사
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">현대카드</a></li>
+                  <li><a class="dropdown-item" href="#">국민은행</a></li>
+                  <li><a class="dropdown-item" href="#">기업은행</a></li>
+                </ul>
+              </div>
 
-
-            <div class="row gy-3" id="dis">
-              <div class="col-md-6">
+              <div class="col-md-9">
                 <label for="cc-name" class="form-label">이름</label>
                 <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
               </div>
   
-              <div class="col-md-6">
+              <div class="col-md-9">
                 <label for="cc-number" class="form-label">카드번호</label>
                 <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
               </div>
   
-              <div class="col-md-3">
-                <label for="cc-expiration" class="form-label">날짜</label>
+              <div class="col-md-4">
+                <label for="cc-expiration" class="form-label">YY/MM</label>
                 <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
               </div>
   
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <label for="cc-cvv" class="form-label">CVV</label>
                 <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="cc-cvv" class="form-label">비밀번호(두자리)</label>
+                <input type="password"  maxlength='2' class="form-control" id="cc-cvv" placeholder="" required>
+                <small class="text-muted">비밀번호 앞 두자리만 입력해주세요</small>
               </div>
             </div>
-  
-            <hr class="my-4">
+  <!-- 신용카드 - end -->
+
+<!--무통장입금  -->
+  <div class=" row gy-3 " id="selectPay_noBank">
+
+    <div class="dropdown">
+      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        은행목록
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#">농협</a></li>
+        <li><a class="dropdown-item" href="#">국민은행</a></li>
+        <li><a class="dropdown-item" href="#">기업은행</a></li>
+      </ul>
+    </div>
+
+
+    <div class="col-md-4">
+      <label for="cc-name" class="form-label">입금자명</label>
+      <input type="text" class="form-control" id="cc-name" placeholder="" required>
+    </div>
+
+    <div class="col-md-8">
+      <label for="cc-name" class="form-label">계좌번호</label>
+      <input type="text" class="form-control" id="cc-name" placeholder="" required>
+    </div>
+</div>
+<!-- 무통장입금 - end  -->
+          
+<!-- 계좌이체 -->
+<div class=" row gy-3 " id="selectPay_Bank">
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      은행목록
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">농협</a></li>
+      <li><a class="dropdown-item" href="#">국민은행</a></li>
+      <li><a class="dropdown-item" href="#">기업은행</a></li>
+    </ul>
+  </div>
+
+
+  <div class="col-md-4">
+    <label for="cc-name" class="form-label">출금자명</label>
+    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+  </div>
+
+  <div class="col-md-8">
+    <label for="cc-name" class="form-label">계좌번호</label>
+    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+  </div>
+
+  <div class="col-md-6">
+    <label for="cc-cvv" class="form-label">비밀번호(두자리)</label>
+    <input type="password"  maxlength='2' class="form-control" id="cc-cvv" placeholder="" required>
+    <small class="text-muted">비밀번호 앞 두자리만 입력해주세요</small>
+  </div>
+</div>
+
+  <!-- 계좌이체 -end  -->
+  <div class="form-group">
+    <label class="form-label mt-1">후원금액 *  </label>
+     <input type="text" class="form-control" id="sign_id">
+     <small class="text-muted" style="display: block; margin-top: 10px;">※ 후원취소, 확정은 마이페이지에서 할 수 있습니다.</small>
+     <small class="text-muted" style="display: block;">※ 후원취소는 후원일자로 부터 7일 이내에만 가능합니다.</small>
+     <small class="text-muted" style="display: block;">※ 기부금 영수증이 발급된 후원은 후원 취소할 수 없습니다.</small>
+     <small class="text-muted" style="display: block;">※ 후원 확정 시 후원 취소는 할 수 없습니다.</small>
+ </div>
 
 
     <div class="d-grid gap-2">
                 <button class="btn btn-primary btn-lg" type="button" style="margin-bottom: 70px;">가입하기</button>
-      </div>
-
-
-        </form>
-    </div>
+   </div>
+  </form>
+</div>
     
 </section>
 
 
-         
-          <!--
-          <hr class="my-4">
-
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-          </div>
-
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Save this information for next time</label>
-          </div>
-
-          <hr class="my-4">
-
-          <h4 class="mb-3">결제방법</h4>
-
-          
-
-         
-
-          <button class="w-30 btn btn-dark btn-lg" type="submit">Continue to checkout</button>
-        </form>
-
-    </div>
-  </main> -->
- 
 
 
 
-   
-<!-- 카드 -->
-    <div id='dis'><h1>여기에 있는 글이 버튼을 누르면 보여지고 사라집니다.</h1></div>
-  <button id='show' onclick="dis()">show</button>
 
 
-
-<!-- <script>
-function dis(){
-      if($('#dis').css('display') == 'none'){
-      $('#dis').show();
-    }else{
-      $('#dis').hide();
-    }
-    }
-</script> -->
-<form action="">
-  <input type="radio" name="list" value='1' checked onclick="document.getElementById('str').innerHTML='dis'">A
-  <input type="radio" name="list" value='2' onclick="document.getElementById('str').innerHTML='B'">B
-  <input type="radio" name="list" value='3' onclick="document.getElementById('str').innerHTML='C'">C
-  <input type="radio" name="list" value='4' onclick="document.getElementById('str').innerHTML='D'">D
-</form>
 <script>
-function setDisplay(){
-  if($('input:radio[id=aaa]').is(':checked')){
-      $('#divId').hide();
-  }else{
-      $('#divId').show();
-  }
-}
+// 결제js TEST
+// $("input[name='payment']").change(function(){
+// 	var test = $("input[name='payment']:checked").val();
+// 	alert(test);			
+// });
+
+
+// 결제 관련 js
+$(document).ready(function(){
+
+    $('#selectPay_Bank').hide();   // 초깃값 설정
+    $('#selectPay_noBank').hide();	// 초깃값 설정
+		
+	$("input[name='payment']").change(function(){
+		// 계좌이체 결제 선택 시.
+		if($("input[name='payment']:checked").val() == '계좌이체'){
+			$('#selectPay_card').hide();
+			$('#selectPay_noBank').hide();
+			$('#selectPay_Bank').show();
+		}	
+		// 무통장입금 결제 선택 시.
+		else if($("input[name='payment']:checked").val() == '무통장입금'){
+			$('#selectPay_card').hide();
+			$('#selectPay_Bank').hide();
+			$('#selectPay_noBank').show();
+		}
+		// 신용카드 결제 선택 시.
+		else if($("input[name='payment']:checked").val() == '신용카드'){
+			$('#selectPay_Bank').hide();
+			$('#selectPay_noBank').hide();
+			$('#selectPay_card').show();
+		}
+	});
+});
+
+</script>
+
 
 </script>
     <!-- footer -->
