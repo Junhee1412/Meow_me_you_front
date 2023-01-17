@@ -746,27 +746,3 @@ footer.footer .social-link:hover {
 	}
 
 
-  /* 테이블 */
-
-.left {
-  display: flex;
-  align-items: center;
-  margin-left:5%;
-  
-}
-
-
-textarea,
-.fake_textarea{
-  resize: none;
-  width: 90%;
-  border-radius: 4px;
-  border: 1px solid gray;
-  
-  font-size: 15px;
-  font-weight: normal;
-  
-  
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
