@@ -750,3 +750,17 @@ header .card {
   vertical-align: middle; 
 }
 
+
+
+
+/* 검색바 */
+.col-md-7{
+  width: 400px;
+}
+
+.col-md-6{
+  width: 90px;
+}
+
+
+
