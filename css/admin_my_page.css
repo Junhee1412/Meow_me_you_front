@@ -739,6 +739,11 @@ footer.footer .social-link:hover {
   margin: 0 auto;
   width: 503px;
 }
+.container.py-3 {
+  margin: 0 auto;
+  width: 700px;
+  height: 700px;
+}
 
 .d-grid.gap-2 {
   padding-top: 30px;
@@ -762,16 +767,16 @@ header {
 }
 
 header .thumb {
-  width: 200px;
-  height: 200px;
-  border-radius: 30%;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1), 0 12px 24px 0 rgba(0, 0, 0, 0.24);
 }
 
 header .thumb-wrapper {
   position: relative;
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
 }
 
 header .greeting {
@@ -787,16 +792,62 @@ header .mail {
   margin-top: 18px;
 }
 
-.col-md-7 {
-  width: 78%;
+/* 리스트 */
+.list {
+  margin-top: 48px;
 }
 
-.col-md-4 {
-  width: 128px;
-  margin-right: -30px;
+.list .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.bot_btn_group {
-  text-align: end;
+.list .item .left {
+  display: flex;
+  align-items: center;
+}
+
+.list .item .left .name {
+  margin-left: -20px;
+}
+
+.list .item .right {
+  opacity: 0.5;
+}
+
+.list .item img {
+  padding: 20px 22px;
+}
+
+.list .item .right img {
+  padding-right: 14px;
+}
+
+.list .mg {
+  margin-left: -50px;
+}
+#user_info_box {
+  text-align: center;
+  width: 20%;
+  margin: 0 auto;
+}
+#user_info {
+  text-align: center;
+  margin: 10px;
+}
+
+section {
+  height: 400px;
+  width: 25%;
+  margin: 0 auto;
+}
+
+.martop_30 {
   margin-top: 30px;
+}
+
+.mail a {
+  text-decoration: none;
 }
