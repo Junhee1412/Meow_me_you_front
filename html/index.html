@@ -15,6 +15,7 @@
     />
     <meta property="og:title" content="미유미유" />
     <meta property="og:description" content="너와 나의 이야기가 펼쳐지는 곳" />
+   <link href="../css/bootstrap-icons.css" rel="stylesheet">
     <meta
       property="og:image"
       content="http://mintable1.cafe24.com/Meow_me_you_front/img/kakao_preview.jpg"
@@ -30,8 +31,6 @@
       sizes="16x16"
     />
     <title>Meow_me_you</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
@@ -54,60 +53,58 @@
 
   <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <div class="container px-4">
-        <a class="logo" href="#page-top"
-          ><img alt="Brand" src="../img/logo/logo.png"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#donate">후원하기</a>
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  
+       
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <a class="logo d-flex align-items-center" href="#page-top"><img alt="Brand" src="../img/logo/logo4.png"></a>
+        </a>
+  
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list "></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x "></i>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li class="dropdown"><a href="#"><span>Meow me, you</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul>
+                <li><a href="#">사업소개</a></li>
+                <li><a href="#">후원내역</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#donate">후원내역</a>
+            <li><a href="#">후원하기</a></li>
+            <li class="dropdown"><a href="#"><span>물품거래</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul>
+                <li><a href="#">무료 나눔</a></li>
+                <li><a href="#">중고 거래</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#find_ctr">구조센터 찾기</a>
+            <li class="dropdown"><a href="#"><span>커뮤니티</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul>
+                <li><a href="#">분양하기</a></li>
+                <li><a href="#">분양후기</a></li>
+                <li><a href="#">캣스타그램</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#trade">중고거래</a>
+            <li class="dropdown"><a href="#"><span>마이페이지</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul>
+                <li><a href="#">내 글 모아보기</a></li>
+                <li><a href="#">내가 쓴 댓글 모아보기</a></li>
+                <li><a href="#">좋아요 목록 보기</a></li>
+                <li><a href="#">내 후원 목록보기</a></li>
+                <li><a href="#">회원정보 수정하기</a></li>
+              </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#trade">무료나눔</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#adopt_commu">분양하기</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#adopt_commu">분양후기</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#catstar_commu">캣스타그램</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#my_page">마이페이지</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-6" href="#log_out">로그아웃</a>
-            </li>
+            <li><a class="get-a-quote" href="#">로그아웃</a></li>
           </ul>
-        </div>
+        </nav>
+        <!-- .navbar -->
+  
       </div>
-    </nav>
-    <!-- Header-->
-    <header class="masthead d-flex align-items-center" id="donate">
+    </header><!-- End Header -->
+
+    <!-- section-->
+    <section class="masthead d-flex align-items-center" id="donate">
       <div class="container px-4 px-lg-5 text-left">
         <h3 class="mb-1">고양이의 평균 수명 15년</h3>
         <h3 class="mb-4">그러나 길고양이의 평균 수명은 고작 2년입니다.</h3>
@@ -116,10 +113,9 @@
         <p class="mb-4 fs-5">
           내일을 기대할 수 있게 해주세요
         </p>
-        <a class="btn btn-outline-dark btn-lg fs-5 mb-3" href="#"
+        <a class="btn btn-dark btn-lg fs-5 mb-3" href="#"
           >Meow me, you 후원내역보기</a
         ><br />
-        <a class="btn btn-outline-dark btn-lg fs-5" href="#">후원하러가기</a>
       </div>
 
       <a
@@ -145,7 +141,7 @@
       >
         <img src="../img/chat.png" class="chat_img" alt="채팅상담"
       /></a>
-    </header>
+    </section>
     <!-- trade-->
     <section class="trade_section bg-light" id="trade">
       <div class="container px-4 px-lg-5 text-center">
@@ -153,7 +149,7 @@
           
           <div class="col-lg-10">
             <div>
-              <img src="../img/second_trade-removebg.png" class="trade_img" alt="중고거래"
+              <img src="../img/second_trade-removebg.png" class="trade_img" alt="중고거래" style="background-size:cover;"
               />
             </div>
             <h2>중고거래, 무료나눔을 해보세요</h2>
@@ -161,12 +157,14 @@
               이웃과 함께 다양한 고양이 용품을 나눠보세요!<br />
               다양한 물건을 판매하고 구매할 수 있는 공간!
             </p>
-            <a class="btn btn-outline-dark btn-lg fs-5 mb-3" href="#"
-              >중고거래 바로가기</a
+            <div class="row d-flex justify-content-center">
+            <a class="btn btn-outline-dark btn-sm fs-5 col-2" style="margin-right: 10px;" href="#"
+              >중고거래</a
             ><br />
-            <a class="btn btn-outline-dark btn-lg fs-5" href="#"
-              >무료나눔 바로가기</a
+            <a class="btn btn-outline-dark btn-sm fs-5 col-2" href="#"
+              >무료나눔</a
             >
+          </div>
           </div>
         </div>
       </div>
@@ -175,29 +173,30 @@
 
     <section class="adopt_img d-flex align-items-center" id="adopt_commu">
       <div class="container px-4 px-lg-5 text-end text-white">
-        <h3 class="mb-3">가족을 잃은 아이들에게</h3>
-        <h3 class="mb-3">따뜻한 손길을 내밀어주세요</h3>
+        <h3 class="mb-3">유리창 너머를 꿈꾸는 아이들에게</h3>
+        <h3 class="mb-5">당신이라는 꿈을 선물해주세요</h3>
 
-        <a class="btn btn-outline-light btn-lg fs-5 mb-3" href="#"
+        <a class="btn btn-light btn-lg fs-5 mb-3" style=" border-radius: 25px;" href="#"
           >분양하기 바로가기</a
         ><br />
-        <a class="btn btn-outline-light btn-lg fs-5" href="#"
+        <a class="btn btn-light btn-lg fs-5 "  style=" border-radius: 25px;" href="#"
           >분양후기 바로가기</a
         >
       </section>
 
-      <a
-        href="../img/temp.png"
-        data-btn="regular"
-        data-alt-a="캠페인버튼클릭"
-        data-alt-b="girl22"
-        data-alt-c="quickb1"
-        class="btn_ga_send quicks"
-        id="aside_banner"
-      >
+      <div id="aside_donate">
+        <a
+          href="../img/temp.png"
+          data-btn="regular"
+          data-alt-a="캠페인버튼클릭"
+          data-alt-b="girl22"
+          data-alt-c="quickb1"
+          class="btn_ga_send quicks"
+          id="aside_banner"
+        >
         <img src="../img/aside.png" class="img_aside" alt="후원하기"
       /></a>
-
+      </div>
       <a
         href="../img/temp.png"
         data-btn="regular"
@@ -263,12 +262,9 @@
               <img class="img-fluid" src="../img/portfolio-4.jpg" alt="..." />
             </a>
           </div>
-          <a
-            class="btn btn-outline-dark btn-lg fs-5 mt-5"
+          <a class="btn btn-dark btn-lg fs-5 mt-4" style=" border-radius: 25px;"
             id="catstargram_btn"
-            href="#"
-            >더 많은 이야기 보러가기</a
-          >
+            href="#">더 많은 이야기 보러가기</a>
         </div>
       </div>
     </section>
