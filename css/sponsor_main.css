@@ -11666,3 +11666,18 @@ width:200px;
     height:3000px;
   }
 }
+
+a{
+  text-decoration: none;
+  color:#000;
+}
+.donate_btn:hover a{
+  color:#FFF;
+}
+
+.card-img-overlay{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -40,7 +40,7 @@
       type="image/x-icon"
       sizes="16x16"
     />
-    <title>후원하기 홈</title>
+    <title>커뮤니티 글 목록</title>
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
@@ -58,7 +58,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/sponsor_main.css" rel="stylesheet" />
+    <link href="../css/parcel_review_community.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -69,7 +69,7 @@
        
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="assets/img/logo.png" alt=""> -->
-          <a class="logo d-flex align-items-center" href="#page-top"><img alt="Brand" src="../img/logo/logo4.png"></a>
+          <a class="logo d-flex align-items-center" href="/"><img alt="Brand" src="../img/logo/logo4.png"></a>
         </a>
   
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list "></i>
@@ -91,7 +91,7 @@
             </li>
             <li class="dropdown"><a href="#"><span>커뮤니티</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
-                <li><a href="#">분양하기</a></li>
+                <li><a href="#" th:href="@{/board/list}">분양하기</a></li>
                 <li><a href="#">분양후기</a></li>
                 <li><a href="#">캣스타그램</a></li>
               </ul>
@@ -113,106 +113,134 @@
       </div>
     </header><!-- End Header -->
 
-
- 
-     <div class="header-card" >
+     <!-- section -->
+     <div class="header-card">
       <div class="card bg-crop">
         <img
-        src="../img/parcel_review_menu.jpg"
-        class="card-img rounded mx-auto d-block bg-menu"
-        alt="커뮤니티설명"
-      />
-      <div class="card-img-overlay">
-     
-          <h5 class="card-title text-dark text-center fs-2">
-            길 위의 아이들이
+          src="../img/parcel_review_menu.jpg"
+          class="card-img rounded mx-auto d-block bg-menu"
+          alt="커뮤니티설명"
+        />
+        <div class="card-img-overlay">
+          <h5 class="card-title text-dark text-center fs-1">
+            분양하기 커뮤니티
           </h5>
           <p class="card-text text-dark text-center fs-3">
-            내일을 기대할 수 있도록 함께해주세요!
+            고양이를 분양을 하는 곳입니다. 새로운 가족을 찾아주세요~
           </p>
-       </div>
+        </div>
       </div>
      </div>
-     <div style=>
-    <div class="text-center fs-1 mt-5">
-      <p>후원사업 선택</p>
-    </div>
+    <!-- 전체 글 보기 드롭다운 메뉴 -->
+      <div class="btn-group position-absolute top_btn">
+        <button
+          type="button"
+          class="btn btn-secondary dropdown-toggle fs-6"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          전체 글 보기
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item fs-6" href="#" aria-current="true"
+              >전체 글 보기</a
+            >
+          </li>
+          <li><a class="dropdown-item fs-6" href="#">분양 중인 고양이</a></li>
+          <li>
+            <a class="dropdown-item fs-6" href="#">분양이 종료된 고양이</a>
+          </li>
+        </ul>
+      </div>
 
-    <div class="text-center fs-3 mb-5">
-      <p>원하시는 후원사업을 선택해주세요!</p>
-    </div>
-  </div>
-
-
-  <!-- section -->
-
-  <section>
-  <div class="row row-cols-1 row-cols-xxl-3 row-cols-lg-1 g-4 donate_row">
-    <div class="col donate_box mt-5">
-      <div class="card donate_card">
-        <img src="../img/wu-yi-cfVUAxMnqbg-unsplash.jpg" class="card-img-top donate_pic" alt="..." >
-        <div class="card-body">
-          <h5 class="card-title donate_head_line mb-3">유기묘의 치료를 도와주세요!</h5>
-          <p class="card-text"><strong>유기동물 보호소 1개소의 1년치 치료비용 5천만원</strong></p>
-            대부분의 보호소에서는 이를 감당하지 못하고 15.7%의 유기동물을 안락사시킨다고 해요 아이들이 아프지 않고 건강하게 자랄 수 있도록
-            미유미유에서 당신의 온기를 아이들에게 더해주세요<br>
-          </p>
-
-        </div>   
-        <small class="text-muted">후원 금액은 **구청 관할보호소에 전달됩니다.</small>    
-         <div class="btn_box">
-          <a type="button" onClick="javascript:selectBusiness('CURE_001')" class="btn btn-outline-dark donate_btn">치료사업 후원하기</a>
+    <!-- 커뮤니티 첫번째 줄 444 -> 3333 -> 2*6 으로 줄어듬  -->
+    <section class="py-5">>
+      <div class="container px-4 px-lg-5 mt-5">
+        <div
+          class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+        >
+          <div class="col mb-5" th:each="communityMaster : ${list}">
+            <div class="card h-100">
+              <!--  badge-->
+              <div class="badge bg-warning text-dark position-absolute fs-6">
+                분양 중
+              </div>
+              <!-- 분양후기 이미지 -->
+              <img
+                class="card-img-top"
+                src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                alt="..."
+              />
+              <!-- 분양후기 상세내용들 -->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- 글 제목 -->
+                  <h5 class="fw-bolder" th:text="${communityMaster.subject}">길에서 만난 천사 미유</h5>
+                </div>
+              </div>
+              <!-- post actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <a class="btn btn-outline-dark mt-auto" th:href="@{/board/view(postNo=${communityMaster.postNo})}"
+                    >자세히 보기</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
-      </div>
-    </div>
-    <div class="col donate_box mt-5">
-      <div class="card donate_card">
-        <img src="../img/yoo-ho-Adrg_snBztQ-unsplash.jpg" class="card-img-top donate_pic" alt="...">
-        <div class="card-body">
-          <h5 class="card-title donate_head_line mb-3">유기묘의 보호를 도와주세요!</h5>
-          <p class="card-text"><strong>보호소에 입소하면 15일마다 친구들이 없어진대요</strong></p>
-          <p>
-            입소하고 15일 안에 입양 받지 못하면 보호소에 자리가 없어서 안락사 당하고 맙니다.
-            우리 아이들이 안심하고 보호받을 수 있도록 더 많은 보호소에서 새로운 가족과 만날 수 있도록
-            장소를 마련해주시는건 어떨까요?
-          </p>
-          
-        </div>        
-        <small class="text-muted">후원 금액은 **구청 보호소 개설사업에 전달됩니다.</small>
-        <div class="btn_box">
-          <a type="button" onClick="javascript:selectBusiness('PRTC_001')" class="btn btn-outline-dark donate_btn">보호사업 후원하기</a>
-          </div>
-      </div>
-    </div>
-    <div class="col donate_box mt-5">
-      <div class="card donate_card">
-        <img src="../img/the-lucky-neko-Zp-OCg7j2Fg-unsplash.jpg" class="card-img-top donate_pic" alt="...">
-        <div class="card-body">
-          <h5 class="card-title donate_head_line mb-3">유기묘의 구조를 도와주세요!</h5>
-          <p class="card-text"><strong>고양이의 평균 수명은 15년 그러나 길고양이의 평균 수명은 고작 2년</strong></p>
-          <p>추위를 견디지 못하고 병에 걸리거나 영양실조로 길가에서 매 년 25%이상의 고양이들이 죽고 있습니다.
-            이 연약한 생명들이 내일을 기대할 수 있도록 건강하게 자랄 수 있도록 당신의 따뜻한 손길을 내어주세요
-          </p>
-         
-        </div>
-        <small class="text-muted">후원 금액은 **구조센터에 전달됩니다.</small>
-        <div class="btn_box">
-          <a type="button" onClick="javascript:selectBusiness('STRUC_001')" class="btn btn-outline-dark donate_btn">보호사업 후원하기</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-   </section>
 
-   <!--section-end-->
+
+    </section>
+
+    <a
+            type="button" style="text-align: center;"
+            class="btn btn-secondary  fs-5 right_18per position-absolute"
+            th:href="@{/board/write}">
+      글 쓰기
+    </a>
+
+
+
+    <!-- 페이지 -->
+    <nav class="marbot_100" aria-label="Page navigation example" >
+      <ul class="pagination">
+        <li class="page-item" th:classappend="${1 == nowPage} ? 'disabled'">
+          <a class="page-link" href="#" aria-label="Previous" th:href="@{/board/list(page=${startPage-1})}">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" th:classappend="${1 == nowPage} ? 'disabled'">
+          <a class="page-link" href="#" aria-label="Previous" th:href="@{/board/list(page=${nowPage-2})}">
+            <span aria-hidden="true">&lt;</span>
+          </a>
+        </li>
+
+        <li class="page-item" th:classappend="${i == nowPage} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+          <a class="page-link" href="#"  th:href="@{/board/list(page=${i - 1})}" th:text="${i}">1</a></li>
+
+        <li class="page-item" th:classappend="${endPage == nowPage} ? 'disabled'">
+          <a class="page-link" href="#" aria-label="Next"  th:href="@{/board/list(page=${nowPage})}">
+            <span aria-hidden="true">&gt;</span>
+          </a>
+        <li class="page-item" th:classappend="${endPage == nowPage} ? 'disabled'">
+          <a class="page-link" href="#" aria-label="Next"  th:href="@{/board/list(page=${endPage-1})}">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  <!-- section - end -->
+
+   
    
 
     <!-- Footer-->
     <footer class="py-5 bg-dark">
       <div class="container px-4">
         <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website 2023
+          Copyright &copy; Your Website 2022
         </p>
       </div>
     </footer>
@@ -223,6 +251,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="../js/sponsor_main.js"></script>
+    <script src="../js/template.js"></script>
   </body>
 </html>

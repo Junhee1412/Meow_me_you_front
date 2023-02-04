@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -91,7 +91,7 @@
             </li>
             <li class="dropdown"><a href="#"><span>커뮤니티</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
-                <li><a href="#">분양하기</a></li>
+                <li><a href="#" th:href="@{/board/list}">분양하기</a></li>
                 <li><a href="#">분양후기</a></li>
                 <li><a href="#">캣스타그램</a></li>
               </ul>
@@ -131,17 +131,19 @@
         </div>
       </div>
      </div>
-
+    <form action="/board/writepro" method="post">
     <div id="insert_text_box">
       <div class="row w-50 mb-3">
         <label for="inputEmail3" class="col-sm-2 col-form-label">제목 *</label>
         <div class="col-sm-10">
+
           <input
-            type="text"
+            type="text" name="subject"
             class="form-control"
             id="formTextContent"
             placeholder="제목을 입력해주세요."
           />
+          <input name="userNo" type="hidden" class="form-control" th:value="${user.getUserNo()}">
         </div>
       </div>
       <div class="row w-50 mb-5">
@@ -150,7 +152,7 @@
         >
         <div class="col-sm-10">
           <textarea
-            class="form-control"
+            class="form-control" name="content"
             id="exampleFormControlTextarea1"
             rows="10"
             placeholder="내용을 입력해주세요."
@@ -210,9 +212,12 @@
 
     <hr class="border border-white" />
 
-    <div class="bot_btn_group">
-      <button type="button" class="btn btn-dark">등록하기</button>
+    <div class="bot_btn_group" style="margin-right: -7%;">
+      <button class="btn btn-dark" >등록하기</button>
 
+      <button class="btn btn-dark" style="margin-left:10px;">목록으로</button>
+    </div>
+    </form>
       <div
         class="modal fade"
         id="exampleModal"
@@ -250,14 +255,7 @@
       </div>
 
       &nbsp;&nbsp;&nbsp;
-      <button
-        type="button"
-        class="btn btn-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        목록으로
-      </button>
+
       <div
         class="modal fade"
         id="exampleModal"
@@ -296,7 +294,7 @@
     <footer class="py-5 bg-dark">
       <div class="container px-4">
         <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website 2023
+          Copyright &copy; Your Website 2022
         </p>
       </div>
     </footer>
