@@ -141,36 +141,26 @@ document.addEventListener('DOMContentLoaded', () => {
   
   });
 
-  
-  // function printArea(){
-  //   var initBody = document.body.innerHTML;
-  //   printID1.style.display ="none";
-  //   printID2.style.display ="none";
-  //   window.onbeforeprint= function(){
-  //     document.body.innerHTML=document.getElementById('spon_receopt_box').innerHTML;
-  //   }
-  //   window.onafterprint=function(){
-  //     document.body.innerHTML=initBody;
-  //   }
-  //   window.print();  // 클릭액션 : 버튼클릭시 인쇄창팝업
-  //  };
+function ValidChecked(){
+  var pw_RegExp = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,20}$/;
+  var objPassword=document.getElementById("id"); // 비밀번호
+  var objPWconfirm=document.getElementById("pwd"); // 비밀번호 확인
 
-var initBody;
 
-function beforePrint() {
- initBodyHTML = document.body.innerHTML;
- document.body.innerHTML = document.getElementById('spon_receipt_box').innerHTML;
-}
-function afterPrint() { 
- document.body.innerHTML = initBodyHTML;
-}
-function printArea() {
- window.print();
-}
-
-window.onbeforeprint = beforePrint;
-window.onafterprint = afterPrint;
-
-function goBack(){
-    window.history.back();
+  if(objPassword.value==""){
+    alert("비밀번호를 입력해주세요")
+    objPassword.focus();
+    return false;
+   };
+   if(objPassword.value!=objPWconfirm.value){
+    alert("비밀번호가 일치하지않습니다.");
+    objPWconfirm.focus();
+    return false;
+   }
+   if(!pw_RegExp.test(objPassword.value)){
+    alert("비밀번호는 영문 대,소문자와 숫자, 특수기호 모두가 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.");
+    objPassword.focus();
+    return false;
+   }
+  return true;
 }
