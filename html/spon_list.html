@@ -171,13 +171,13 @@
               </td>
               <td th:text="${donateList.donateDate}"></td>
               <td>
-                  <a type="button" class="btn btn-outline-success btn-sm" th:if="${donateList.donateStateCode}=='DONATE_CNFRM'">영수증 발급</a>
+                  <a type="button" class="btn btn-outline-success btn-sm" th:href="@{/donateReceipt.meow(id=${donateList.donateCode})}" th:if="${donateList.donateStateCode}=='DONATE_CNFRM'">영수증 발급</a>
                   <p th:unless="${donateList.donateStateCode}=='DONATE_CNFRM'">발급불가</p>
               </td>
             </tr>
           </tbody>
         </table>
-  
+    </section>
 
       <!-- 페이지 -->
       <nav class="marbot_100" aria-label="Page navigation example" >
@@ -206,7 +206,7 @@
           </li>
         </ul>
       </nav>
-    </section>
+
   <!-- section - end -->
 
    

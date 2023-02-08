@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -40,7 +41,7 @@
       type="image/x-icon"
       sizes="16x16"
     />
-    <title>글 쓰기 페이지</title>
+    <title>후원목록</title>
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
@@ -51,6 +52,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
       rel="stylesheet"
     />
+
     <!-- Google fonts-->
     <link
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
@@ -58,7 +60,7 @@
       type="text/css"
     />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/post_insert.css" rel="stylesheet" />
+    <link href="../css/admin_spon_list.css" rel="stylesheet" />
   </head>
 
   <body id="page-top">
@@ -91,7 +93,7 @@
             </li>
             <li class="dropdown"><a href="#"><span>커뮤니티</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
-                <li><a href="#" th:href="@{/board/list}">분양하기</a></li>
+                <li><a href="#">분양하기</a></li>
                 <li><a href="#">분양후기</a></li>
                 <li><a href="#">캣스타그램</a></li>
               </ul>
@@ -116,155 +118,105 @@
      <!-- section -->
      <div class="header-card">
       <div class="card bg-crop">
-        <img
-          src="../img/parcel_review_menu.jpg"
-          class="card-img rounded mx-auto d-block bg-menu"
-          alt="커뮤니티설명"
-        />
+        <img src="../img/parcel_review_menu.jpg" class="card-img rounded mx-auto d-block bg-menu" alt="커뮤니티설명" />
         <div class="card-img-overlay" id="community_type">
           <h5 class="card-title text-dark text-center fs-1">
-            분양하기 커뮤니티
+            내 후원목록 모아보기
           </h5>
           <p class="card-text text-dark text-center fs-3">
-            고양이를 분양을 하는 곳입니다. 새로운 가족을 찾아주세요~
+            Meow me you에 후원해주셔서 감사합니다!
           </p>
         </div>
       </div>
      </div>
-    <form action="/board/writepro" method="post" enctype="multipart/form-data" onsubmit="imgChecked();">
-    <div id="insert_text_box">
-      <div class="row w-50 mb-3">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">제목 *</label>
-        <div class="col-sm-10">
+  
+    <section>
+      <div class="container" id="main_box">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">후원자명</th>
+              <th scope="col">후원방식</th>
+              <th scope="col" colspan="3">후원금액</th>
+              <th scope="col">결제방법</th>
+              <th scope="col">후원상태</th>
+              <th scope="col">기부금영수증</th>
+              <th scope="col">후원일자</th>
+              <th scope="col">영수증발급</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="donateList:${list}">
+              <td th:text="${donateList.donateName}"></td>
+              <td th:text="${donateList.donateType}" colspan="3"></td>
+              <td th:text="${#numbers.formatInteger(donateList.donateAmount, 0, 'COMMA')+'원'}"></td>
+              <td th:switch="${donateList.donateWayCode}">
+                <p th:case="'ACNT'">계좌이체</p>
+                <p th:case="'BANK'">무통장입금</p>
+                <p th:case="'CRCRD'">신용카드</p>
+              </td>
+              <td th:switch="${donateList.donateStateCode}">
+                <div th:case="'DONATE_CPL'" >
+                  <a th:href="@{|/donateconfirm.meow?donateCode=${donateList.donateCode}}|" type="button" class="btn btn-outline-success btn-sm" id="confirm_donate_btn">확정</a>
+                  <a th:href="@{|/donatedelete.meow?donateCode=${donateList.donateCode}}|" type="button" class="btn btn-outline-danger btn-sm" id="delete_donate_btn">취소</a>
+                </div>
+                <p th:case="'DONATE_CNFRM'">후원확정</p>
+                <p th:case="'BANK_WAIT'">입금대기중</p>
+                <p th:case="'LCK_BLC'">계좌잔액부족</p>
+                <p th:case="'LIMIT_EXCDD'">한도초과</p>
+              </td>
+              <td>
+                <p th:if="${donateList.donateStateCode}=='DONATE_CNFRM'">가능</p>
+                <p th:unless="${donateList.donateStateCode}=='DONATE_CNFRM'">불가능</p>
+              </td>
+              <td th:text="${donateList.donateDate}"></td>
+              <td>
+                  <a type="button" class="btn btn-outline-success btn-sm" th:href="@{/donateReceipt.meow(id=${donateList.donateCode})}" th:if="${donateList.donateStateCode}=='DONATE_CNFRM'">영수증 발급</a>
+                  <p th:unless="${donateList.donateStateCode}=='DONATE_CNFRM'">발급불가</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
 
-          <input
-            type="text" name="subject"
-            class="form-control"
-            id="formTextContent"
-            placeholder="제목을 입력해주세요."
-          />
-          <input name="userNo" type="hidden" class="form-control" th:value="${user.getUserNo()}">
-        </div>
-      </div>
-      <div class="row w-50 mb-5">
-        <label for="inputPassword3" class="col-sm-2 col-form-label"
-          >내용 *</label
-        >
-        <div class="col-sm-10">
-          <textarea
-            class="form-control" name="content"
-            id="exampleFormControlTextarea1"
-            rows="10"
-            placeholder="내용을 입력해주세요."
-          ></textarea>
-        </div>
-      </div>
-    </div>
-    <div id="insert_pic_box">
-      <div class="row w-50 mb-3">
-        <label for="input-group-text" class="col-sm-2 col-form-label">사진첨부1</label>
-        <div class="col-sm-10">
-          <div class="input-group mb-3">
-            <input type="file" name="file" class="form-control" id="inputGroupFile02"  />
-            <label class="input-group-text" for="inputGroupFile02">Upload</label>
-          </div>
-<!--          </form>-->
-        </div>
-      </div>
+      <!-- 페이지 -->
+      <nav class="marbot_100" aria-label="Page navigation example" >
+        <ul class="pagination">
+          <li class="page-item" th:classappend="${1 == nowPage} ? 'disabled'">
+            <a class="page-link" href="#" aria-label="Previous" th:href="@{/donatelist.meow(page=${startPage-1})}">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item" th:classappend="${1 == nowPage} ? 'disabled'">
+            <a class="page-link" href="#" aria-label="Previous" th:href="@{/donatelist.meow(page=${nowPage-2})}">
+              <span aria-hidden="true">&lt;</span>
+            </a>
+          </li>
+          <li class="page-item" th:classappend="${i == nowPage} ? 'disabled'" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+            <a class="page-link" href="#"  th:href="@{/donatelist.meow(page=${i - 1})}" th:text="${i}">1</a></li>
 
-
-
-    <div class="mx-auto" id="upload_info">
-      <p>* 사진은 5개 까지 첨부할 수 있습니다.</p>
-      <p>* 사진은 최대 20MB까지 첨부할 수 있습니다.</p>
-      <p>* 사진첨부 1에 등록된 사진이 썸네일로 보여집니다.</p>
-    </div>
-
-    <hr class="border border-white" />
-
-    <div class="bot_btn_group" style="margin-right: -7%;">
-      <button class="btn btn-dark" >등록하기</button>
-
-      <button class="btn btn-dark" style="margin-left:10px;">목록으로</button>
-    </div>
-    </form>
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">경고</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              글 내용이 저장되지 않습니다!<br />
-              목록으로 돌아가시겠습니까?
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button type="button" class="btn btn-primary">OK</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      &nbsp;&nbsp;&nbsp;
-
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">경고</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              글 내용이 저장되지 않습니다!<br />
-              목록으로 돌아가시겠습니까?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
-              <button type="button" class="btn btn-dark">OK</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+          <li class="page-item" th:classappend="${endPage == nowPage} ? 'disabled'">
+            <a class="page-link" href="#" aria-label="Next"  th:href="@{/donatelist.meow(page=${nowPage})}">
+              <span aria-hidden="true">&gt;</span>
+            </a>
+          <li class="page-item" th:classappend="${endPage == nowPage} ? 'disabled'">
+            <a class="page-link" href="#" aria-label="Next"  th:href="@{/donatelist.meow(page=${endPage-1})}">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
   <!-- section - end -->
+
+   
+   
 
     <!-- Footer-->
     <footer class="py-5 bg-dark">
       <div class="container px-4">
         <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website 2022
+          Copyright &copy; Your Website 2023
         </p>
       </div>
     </footer>
@@ -275,6 +227,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="../js/template.js"></script>
+    <script src="../js/admin_spon_list.js"></script>
   </body>
 </html>

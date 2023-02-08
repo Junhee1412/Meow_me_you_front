@@ -66,7 +66,7 @@
     rgba(255, 255, 255, 0.15),
     rgba(255, 255, 255, 0)
   );
-  --bs-body-font-family:  'Noto Sans KR', sans-serif, "Noto Serif KR", serif, -apple-system,
+  --bs-body-font-family: 'Noto Sans KR', sans-serif, "Noto Serif KR", serif,  -apple-system,
     BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif,
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --bs-body-font-size: 1rem;
@@ -11554,7 +11554,7 @@ footer.footer .social-link:hover {
 footer{
   font-family: 'Noto Sans KR', sans-serif, "Noto Serif KR", serif, -apple-system,
   BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif,
-  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;;
 }
 
 
@@ -11570,136 +11570,64 @@ footer{
 .header-card {
   width: 100%;
   height: 400px;
-  margin-top: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Jua', 'Noto Sans KR', sans-serif, "Noto Serif KR", serif, -apple-system,
   BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif,
-  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;;
 }
 .header-card .card {
   width: 900px;
   height: 300px;
-}
-
-.bg-crop {
-  position: relative;
-  width: 900px;
-  height: 300px;
-  overflow: hidden;
-}
-
-.bg-menu {
-  position: absolute;
-  top: -100px;
-  left: 0;
-  width: 900px;
-  height: 700px;
-  opacity: 0.6;
-}
-
-/* 모달 */
-.modal.modal-center {
-  text-align: center;
-  margin-top: 200px;
-}
-
-.modal-dialog {
-  text-align: left;
-  vertical-align: middle;
-}
-
-/* 검색바 */
-.col-md-7 {
-  width: 400px;
-}
-
-.col-md-6 {
-  width: 90px;
-}
-
-.logo img {
-  width: 100%;
-  height: 65px;
-}
-
-
-.bg-crop {
-  position: relative;
-  width: 900px;
-  height: 300px;
-  overflow: hidden;
-}
-
-.bg-menu {
-  position: absolute;
-  top: -100px;
-  left: 0;
-  width: 900px;
-  height: 700px;
-  opacity: 0.6;
-}
-
-#community_type h5 {
-  font-size: xx-large;
-}
-
-#main_box {
-  width: 1300px;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-.marbot_5 {
-  margin-bottom: 5px;
-}
-#modal_details {
-  width: 90%;
-  margin: 0 auto;
-}
-
-.martop_30 {
-  margin-top: 30px;
-}
-#end_btn_group {
-  position: relative;
-  left: 72%;
-  width: 200px;
-}
-
-#search_box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#page_navbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-title{
   margin-top: 100px;
 }
 
-#donateCode{
-    display:hidden;
+.bg-crop {
+  position: relative;
+  width: 900px;
+  height: 300px;
+  overflow: hidden;
 }
 
-.page-item.disabled .page-link {
-  color: #fff;
-  pointer-events: none;
-  background-color: #5c636a;
-  border-color: #dee2e6;
+.bg-menu {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 900px;
+  height: 700px;
+  opacity: 0.6;
 }
 
-.pagination {
+#community_type {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+#community_type h5 {
+  font-size: xx-large;
+}
+#insert_text_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+#insert_pic_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.bot_btn_group {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 50px;
+}
+
+#upload_info {
+  width: 33%;
 }

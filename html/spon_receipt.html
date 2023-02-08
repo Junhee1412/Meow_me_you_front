@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -116,8 +117,8 @@
 
 
   
-    <section id="user_info" style="margin-top:150px;">
-      <div class="col-3" id="spon_receopt_box">
+    <section id="spon_receipt_info">
+      <div class="col-3" id="spon_receipt_box">
         <h1 class="text-center mb-5 mt-5">기부금 영수증</h1>
         <table class="table mb-5">
           <tbody>
@@ -126,11 +127,11 @@
             </tr>
             <tr>
               <th>성명</th>
-              <td colspan="2">고민호</td>
+              <td th:text="${donateReceipt.donateName}" colspan="2"></td>
             </tr>
             <tr>
               <th>연락처</th>
-              <td colspan="2">010-0000-0000</td>
+              <td th:text="${donateReceipt.phoneNumber}" colspan="2"></td>
             </tr>
             <tr>
               <th colspan="3" class="table-secondary">기부금단체</th>
@@ -148,59 +149,76 @@
             </tr>
             <tr>
               <th>단체명</th>
-              <td colspan="2">**치료센터</td>
+              <td th:switch="${donateReceipt.donateBusinessCode}" colspan="2">
+                <span th:case="'CURE_001'">**구청 관할 보호소 **보호소</span>
+                <span th:case="'PRTC_001'">**구청 보호소 개설사업</span>
+                <span th:case="'STRUC_001'">**구조센터</span>
+              </td>
             </tr>
             <tr>
               <th>소재지</th>
-              <td colspan="2">서울시 **구 **동 ***-**</td>
+              <td th:switch="${donateReceipt.donateBusinessCode}" colspan="2">
+                <span th:case="'CURE_001'">서울시 **구 **동 **보호소</span>
+                <span th:case="'PRTC_001'">**구청</span>
+                <span th:case="'STRUC_001'">경기도 **시 **구 **동 **구조센터</span>
+              </td>
             </tr>
             <tr>
               <th colspan="3" class="table-secondary">기부내용</th>
             </tr>
-            <tr class="donate_content">
+            <tr>
               <th>유형</th>
-              <th>일자</th>
+              <th>기부일자</th>
               <th>후원금액</th>
             </tr>
             <tr class="donate_content">
-              <td style="border-right: 1px solid RGB(234, 236, 238);" class="text-center">계좌이체</td>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" class="text-center">2023년 2월 4일</td>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" class="text-center">30,000원</td>
+              <td th:switch="${donateReceipt.donateWayCode}">
+                <span th:case="'ACNT'">계좌이체</span>
+                <span th:case="'BANK'">무통장입금</span>
+                <span th:case="'CRCRD'">신용카드</span>
+              </td>
+              <td th:text="${#dates.format(donateReceipt.donateDate, 'yyyy년 MM월 dd일')}"></td>
+              <td th:text="${#numbers.formatInteger(donateReceipt.donateAmount, 0, 'COMMA')+'원'}"></td>
             </tr>
             <tr>
               <td colspan="3">소득세법 제 -조, 조세특례제한법 제-조 및 동법 제 -조의 -의 규정에 의한 기부금을 
                 위와 같이 기부하였음을 증명하여 주시기 바랍니다.<br>
-                <p class="mt-4 mb-4 text-center">2013년 2월 4일</p>
-              <p class="text-end">신청일 :        (인)</p></td>
+                <p th:text="${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}"class="mt-5 mb-5 text-center"></p>
+              <p class="text-end">신청인 : <span th:text="${donateReceipt.donateName}"></span>&nbsp;&nbsp;&nbsp;(인)</p></td>
             </tr>
             <tr>
               <td colspan="3">위와 같이 기부하였음을 증명합니다.<br>
-                <p class="mt-4 mb-4 text-center">2013년 2월 4일</p>
-              <p class="text-end">기부금 수령인 :        (인)</p></td>
+                <p th:text="${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}" class="mt-5 mb-5 text-center"></p>
+              <p class="text-end">기부금 수령인 :
+              <span th:switch="${donateReceipt.donateBusinessCode}" colspan="2">
+                <span th:case="'CURE_001'">서울시 **구 **동 **보호소장</span>
+                <span th:case="'PRTC_001'">**구청장</span>
+                <span th:case="'STRUC_001'">경기도 **시 **구 **동 **구조센터장</span></span>
+                &nbsp;&nbsp;&nbsp;(인)</p></td>
             </tr>
             <tr>
-              <td rowspan="6" style="width:20%;border-right: 1px solid RGB(234, 236, 238);">유형, 코드 : </td>
-              <td style="border-right: 1px solid RGB(234, 236, 238);">소득세법 제 34조 제2항 기부금<br></td>
+              <td rowspan="6" style="width:15%;border-right: 1px solid RGB(234, 236, 238);">유형, 코드 : </td>
+              <td style="border-right: 1px solid RGB(234, 236, 238);">소득세법 제 34조 제2항 기부금</td>
               <td>(법정기부금, 코드 10)</td>
             </tr>
             <tr>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" >조세특례제한법 제73조 기부금<br></td>
+              <td style="border-right: 1px solid RGB(234, 236, 238);" >조세특례제한법 제73조 기부금</td>
               <td>(조특법, 코드 30)</td>
             </tr>
             <tr>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" >소득세법 제 34조 제1항 기부금<br></td>
+              <td style="border-right: 1px solid RGB(234, 236, 238);" >소득세법 제 34조 제1항 기부금</td>
               <td>(지정기부금, 코드 40)</td>
             </tr>
             <tr>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" >소득세법 제 34조 제1항기부금중 종교단체기부금<br></td>
+              <td style="border-right: 1px solid RGB(234, 236, 238);" >소득세법 제 34조 제1항기부금중 종교단체기부금</td>
               <td>(종교단체기부금, 코드 41)</td>
             </tr>
             <tr>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" >조세특례제한법 제88조의4 기부금<br></td>
+              <td style="border-right: 1px solid RGB(234, 236, 238);" >조세특례제한법 제88조의4 기부금</td>
               <td>(우리사주조합기부금, 코드 42)</td>
             </tr>
             <tr>
-              <td style="border-right: 1px solid RGB(234, 236, 238);" >기타기부금<br></td>
+              <td style="border-right: 1px solid RGB(234, 236, 238);" >기타기부금</td>
               <td>(기타기부금, 코드 50)</td>
             </tr>
           </tbody>
@@ -211,10 +229,8 @@
   <!-- section - end -->
 
   
-  <a id="print" type="button" class="btn btn-light mb-5 mt-2" style="position:relative;left:70%; border:1px solid black;"onclick="printArea()"><i class="fa fa-print print-button"></i>영수증 출력</a>
-   
-   
-
+    <a id="print" type="button" class="btn btn-light mb-5 mt-2" onclick="printArea()"><i class="fa fa-print print-button"></i>영수증 출력</a>
+    <a id="back" class="btn btn-light mb-5 mt-2" type="button" onclick="goBack();">뒤로가기</a>
     <!-- Footer-->
     <footer class="py-5 bg-dark">
       <div class="container px-4">
